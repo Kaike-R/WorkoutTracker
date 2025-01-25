@@ -1,0 +1,2 @@
+INSERT INTO USERS(ID ,EMAIL, name, password, CREATED_AT, UPDATE_AT) VALUES (1 ,'kaike@kaike.com', 'kaike', '123456', NOW(), NOW());
+INSERT INTO WORKOUTS(title, description, user_id, CREATED_AT, UPDATE_AT) VALUES ('treino kaike', 'treino para o kaike', 1, NOW(), NOW());
