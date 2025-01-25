@@ -1,0 +1,20 @@
+services:
+  db:
+    image: postgres
+    restart: always
+    shm_size: 128mb
+    expose:
+      - 5432
+    ports:
+      - 5432:5432
+    deploy:
+      resources:
+        limits:
+          cpus: '0.7'
+          memory: '1.0GB'
+    volumes:
+      - type: tmpfs
+        target: /dev/shm
+
+    environment:
+      POSTGRES_PASSWORD: example
