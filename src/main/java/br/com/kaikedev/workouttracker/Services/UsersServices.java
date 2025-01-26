@@ -15,7 +15,6 @@ public class UsersServices {
 
 
     public Users createUser(UserRequest user) {
-        System.out.println(user);
 
         Users users = new Users(user.getName(), user.getEmail(), user.getPassword());
         System.out.println("Aqui");
@@ -30,7 +29,9 @@ public class UsersServices {
         return user;
     }
 
-    public void deleteUser(String user) {
+    public void deleteUser(String email) {
+        Users user = findUserByEmail(email);
         System.out.println("Deleting user: " + user);
+        userRepo.delete(user);
     }
 }

@@ -36,9 +36,9 @@ public class UsersController {
         return ResponseEntity.ok(usersServices.alterUser(user));
     }
 
-    @DeleteMapping
-    public ResponseEntity<Users> deleteUser(@PathVariable String user) {
-        usersServices.deleteUser(user);
+    @DeleteMapping("/{email}")
+        public ResponseEntity<?> deleteUser(@PathVariable String email) {
+        usersServices.deleteUser(email);
         return ResponseEntity.accepted().build();
     }
 
