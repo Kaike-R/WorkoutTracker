@@ -1,9 +1,11 @@
 package br.com.kaikedev.workouttracker.Controllers;
 
 
+import br.com.kaikedev.workouttracker.Entities.UserRequest;
 import br.com.kaikedev.workouttracker.Entities.Users;
 import br.com.kaikedev.workouttracker.Services.UsersServices;
 import org.apache.coyote.Response;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,7 +13,12 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/users/v1")
 public class UsersController {
 
+
     private UsersServices usersServices;
+
+    public UsersController(UsersServices usersServices) {
+        this.usersServices = usersServices;
+    }
 
     @GetMapping
     public ResponseEntity<String> getUser(@PathVariable String user) {
@@ -19,7 +26,7 @@ public class UsersController {
     }
 
     @PostMapping
-    public ResponseEntity<Users> addUser(@RequestBody Users user) {
+    public ResponseEntity<Users> addUser(@RequestBody UserRequest user) {
         System.out.println(user);
         return ResponseEntity.ok(usersServices.createUser(user));
     }

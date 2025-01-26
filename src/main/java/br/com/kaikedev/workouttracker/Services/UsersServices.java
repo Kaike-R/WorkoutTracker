@@ -1,6 +1,7 @@
 package br.com.kaikedev.workouttracker.Services;
 
 
+import br.com.kaikedev.workouttracker.Entities.UserRequest;
 import br.com.kaikedev.workouttracker.Entities.Users;
 import br.com.kaikedev.workouttracker.Repositories.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,8 +14,12 @@ public class UsersServices {
     public UserRepo userRepo;
 
 
-    public Users createUser(Users user) {
-        return userRepo.save(user);
+    public Users createUser(UserRequest user) {
+        System.out.println(user);
+
+        Users users = new Users(user.getName(), user.getEmail(), user.getPassword());
+        System.out.println("Aqui");
+        return userRepo.save(users);
     }
 
     public Users findUserByEmail(String email) {

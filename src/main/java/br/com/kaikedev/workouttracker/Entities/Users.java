@@ -54,6 +54,12 @@ public class Users {
         this.updatedAt = updatedAt;
     }
 
+    public Users(String name, String email, String password) {
+        this.name = name;
+        this.email = email;
+        this.password = password;
+    }
+
 //    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
 //    private List<Comments> comments;
 
