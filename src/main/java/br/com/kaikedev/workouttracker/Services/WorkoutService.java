@@ -2,6 +2,7 @@ package br.com.kaikedev.workouttracker.Services;
 
 import br.com.kaikedev.workouttracker.Entities.Users;
 import br.com.kaikedev.workouttracker.Entities.Workout;
+import br.com.kaikedev.workouttracker.Entities.WorkoutRequest;
 import br.com.kaikedev.workouttracker.Entities.WorkoutResponse;
 import br.com.kaikedev.workouttracker.Repositories.WorkoutRepo;
 import org.modelmapper.ModelMapper;
@@ -18,9 +19,17 @@ public class WorkoutService {
     public WorkoutRepo workoutRepo;
 
     @Autowired
+    public UsersServices usersServices;
+
+    @Autowired
     private ModelMapper modelMapper;
 
-    public Workout createWorkout(Workout workout) {
+    public Workout createWorkout(WorkoutRequest request) {
+
+        Workout workout = new Workout(request.getTitle(), request.getDescription(), request.getAppointment(), request.getExercises(),request.getUser());
+
+        System.out.println(workout);
+
         return workoutRepo.save(workout);
     }
 
@@ -44,7 +53,10 @@ public class WorkoutService {
 //        return x;
 //    }
 
-    public List<Workout> getAllWorkoutsWithUserId(Users user) {
+    public List<Workout> getAllWorkoutsWithUserId(Integer id) {
+
+        Users user = usersServices.getUser(id);
+
         return workoutRepo.findWorkoutByUser(user);
     }
 

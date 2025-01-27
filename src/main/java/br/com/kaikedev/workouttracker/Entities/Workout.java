@@ -57,4 +57,12 @@ public class Workout {
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     private Users user;
+
+    public Workout(String title, String description, LocalDateTime appointment, List<String> exercises, Users user) {
+        this.title = title;
+        this.description = description;
+        this.appointment = appointment;
+        this.exercises = exercises;
+        this.user = user;
+    }
 }

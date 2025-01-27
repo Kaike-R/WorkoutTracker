@@ -2,6 +2,7 @@ package br.com.kaikedev.workouttracker.Controllers;
 
 
 import br.com.kaikedev.workouttracker.Entities.Workout;
+import br.com.kaikedev.workouttracker.Entities.WorkoutRequest;
 import br.com.kaikedev.workouttracker.Entities.WorkoutResponse;
 import br.com.kaikedev.workouttracker.Services.WorkoutService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,10 +19,31 @@ public class WorkoutController {
     private WorkoutService workoutService;
 
 
-    @GetMapping
+    @GetMapping("/all")
     public ResponseEntity<List<WorkoutResponse>> returnAll() {
         return ResponseEntity.ok(workoutService.getAllWorkouts());
     }
+
+    @GetMapping
+    public ResponseEntity<?> getWorkoutById(@RequestParam int id) {
+        return ResponseEntity.ok(workoutService.getAllWorkoutsWithUserId(id));
+    }
+
+    @PostMapping
+    public ResponseEntity<?> createWorkout(@RequestBody WorkoutRequest workout) {
+        return ResponseEntity.ok(workoutService.createWorkout(workout));
+    }
+
+    @PutMapping
+    public ResponseEntity<?> updateWorkout(@RequestBody Workout workout) {
+        return ResponseEntity.ok(workoutService.updateWorkout(workout));
+    }
+
+    @DeleteMapping
+    public ResponseEntity<?> deleteWorkout(@RequestParam int id) {
+        return ResponseEntity.ok().build();
+    }
+
 
     @PostMapping("/exercices")
     public ResponseEntity<?> addExercise(@RequestParam Integer workoutId,@RequestParam List<String> values) {
@@ -41,7 +63,7 @@ public class WorkoutController {
         return ResponseEntity.ok().body("Clear");
     }
 
-    @PostMapping
+    @PostMapping("/comments")
     public ResponseEntity<String> addComments(@RequestBody Integer workoutId) {
         return ResponseEntity.ok("Hello");
     }

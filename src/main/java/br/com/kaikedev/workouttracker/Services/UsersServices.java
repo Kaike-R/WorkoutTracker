@@ -13,6 +13,10 @@ public class UsersServices {
     @Autowired
     public UserRepo userRepo;
 
+    public Users getUser(Integer id) {
+        return userRepo.findById(id).get();
+    }
+
 
     public Users createUser(UserRequest user) {
 
@@ -25,6 +29,7 @@ public class UsersServices {
         return userRepo.findByEmail(email);
     }
 
+    //TODO fazer fluxo de alterar
     public Users alterUser(Users user) {
         return user;
     }
