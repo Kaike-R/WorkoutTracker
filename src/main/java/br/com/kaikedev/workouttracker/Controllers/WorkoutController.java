@@ -23,6 +23,16 @@ public class WorkoutController {
         return ResponseEntity.ok(workoutService.getAllWorkouts());
     }
 
+    @PostMapping("/exercices")
+    public ResponseEntity<?> addExercise(@RequestParam Integer workoutId,@RequestParam List<String> values) {
+
+
+        System.out.println(workoutId +" " + values.getFirst());
+        System.out.println(workoutId +" " + values.getLast());
+        workoutService.addExercise(workoutId, values);
+        return ResponseEntity.ok().body("Clear");
+    }
+
     @PostMapping
     public ResponseEntity<String> addComments(@RequestBody Integer workoutId) {
         return ResponseEntity.ok("Hello");

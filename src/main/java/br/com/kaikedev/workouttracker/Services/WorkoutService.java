@@ -1,13 +1,10 @@
 package br.com.kaikedev.workouttracker.Services;
 
-import br.com.kaikedev.workouttracker.Entities.Comments;
 import br.com.kaikedev.workouttracker.Entities.Users;
 import br.com.kaikedev.workouttracker.Entities.Workout;
 import br.com.kaikedev.workouttracker.Entities.WorkoutResponse;
-import br.com.kaikedev.workouttracker.Repositories.UserRepo;
 import br.com.kaikedev.workouttracker.Repositories.WorkoutRepo;
 import org.modelmapper.ModelMapper;
-import org.modelmapper.TypeMap;
 import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -38,8 +35,8 @@ public class WorkoutService {
 //                src.getComments().stream().map(Comments::getContent).toList() : List.of(), WorkoutResponse::setComments));
 
 
-
-        return modelMapper.map(x, new TypeToken<List<WorkoutResponse>>() {}.getType());
+        return modelMapper.map(x, new TypeToken<List<WorkoutResponse>>() {
+        }.getType());
     }
 
 //    public List<Workout> getAllWorkouts() {
@@ -66,5 +63,16 @@ public class WorkoutService {
 //    public Workout updateComments(String comments) {
 //
 //    }
+
+    public void addExercise(Integer workoutId, List<String> exercises) {
+
+        for (String exercise : exercises) {
+            System.out.println(workoutId + " " + exercise);
+            workoutRepo.addExercise(workoutId,exercise);
+        }
+
+        //workoutRepo.addExercise(exercises.getFirst());
+
+    }
 
 }
