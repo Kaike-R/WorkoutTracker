@@ -33,9 +33,19 @@ public class WorkoutController {
         return ResponseEntity.ok().body("Clear");
     }
 
+    @DeleteMapping("/exercices")
+    public ResponseEntity<?> deleteExercise(@RequestParam Integer workoutId,@RequestParam String value) {
+
+        workoutService.removeExercise(workoutId, value);
+
+        return ResponseEntity.ok().body("Clear");
+    }
+
     @PostMapping
     public ResponseEntity<String> addComments(@RequestBody Integer workoutId) {
         return ResponseEntity.ok("Hello");
     }
+
+
 
 }

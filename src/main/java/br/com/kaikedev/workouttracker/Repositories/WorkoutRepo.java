@@ -21,6 +21,11 @@ public interface WorkoutRepo extends JpaRepository<Workout, Integer> {
     @Query(value = "insert into workout_exercises (workout_id, exercise) values (:workoutId, :exercise)", nativeQuery = true)
     void addExercise(@Param("workoutId") Integer workoutId ,@Param("exercise") String exercise);
 
+    @Transactional
+    @Modifying
+    @Query(value = "delete from workout_exercises where workout_id=:workoutId and exercise = :exercise", nativeQuery = true)
+    void deleteExercise(@Param("workoutId") Integer workoutId ,@Param("exercise") String exercise);
+
     //String insertCommentsById(int id);
 
 }

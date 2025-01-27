@@ -75,4 +75,9 @@ public class WorkoutService {
 
     }
 
+    public void removeExercise(Integer workoutId, String exercise) {
+
+        workoutRepo.deleteExercise(workoutId,exercise);
+    }
+
 }
