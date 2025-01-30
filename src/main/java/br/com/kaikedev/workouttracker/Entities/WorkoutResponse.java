@@ -1,6 +1,8 @@
 package br.com.kaikedev.workouttracker.Entities;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -29,7 +31,7 @@ public class WorkoutResponse {
 
     private List<CommentsResponse> comments;
 
-    private Integer userId;
+    private UserResponse user;
 
 //    public void setComments(List<Comments> comments) {
 //        List<String> commentsString = new ArrayList<>();
